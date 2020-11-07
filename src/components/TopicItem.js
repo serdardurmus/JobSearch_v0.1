@@ -9,6 +9,7 @@ const TopicItem = (props) => {
     return (
         <TouchableOpacity
             style={[topicItem.container, { backgroundColor: `#${props.item.color}`}]}
+            onPress={props.onSelect}  // onPress metodunu yukarı çıkartmış olduk
         >
             <Text style={topicItem.text}>{props.item.name}</Text>
         </TouchableOpacity>

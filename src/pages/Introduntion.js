@@ -2,6 +2,7 @@ import React from 'react';
 import { SafeAreaView, Text, View, ScrollView} from 'react-native';
 
 import { TopicItem } from '../components';
+import { introduction } from '../styles';
 
 const topics = [
     {id: 0, name: 'Java', color: 'fb5607'},
@@ -16,13 +17,25 @@ const topics = [
 ]
 
 const Introduction = (props) => {
+
+    // Herhangi bir dile basınca sayfayı yönlendirmek için fonksiyonumu yazıyorum
+    function selectLanguage(lang) {
+        props.navigation.navigate("Jobs", { selectLanguage: lang})
+    }
+
     return (
-        <SafeAreaView style={{flex: 1}}>
+        <SafeAreaView style={{flex: 1, backgroundColor: "#eceff1"}}>
             <View style={{flex: 1}}>
-                <Text>INTRODUCTION</Text>
-                <ScrollView>
+                <View style={introduction.banner}> 
+                    <Text style={introduction.bannerText}>Aradığınız dili seçin</Text>
+                </View>
+                <ScrollView
+                    horizontal
+                    // contentContainerStyle her bir sütuna özel style vermek için kullanıyoruz
+                    contentContainerStyle= {{ alignItems: "center"}}
+                >
                     {
-                        topics.map( t => <TopicItem key={t.id} item={t}/>)
+                        topics.map( t => <TopicItem key={t.id} item={t} onSelect={() => selectLanguage(t.name)}/>)
                     }
                 </ScrollView>
             </View>
