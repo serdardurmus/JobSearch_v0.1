@@ -1,6 +1,7 @@
 import Axios from 'axios';
 import Modal from 'react-native-modal';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { WebView } from 'react-native-webview';
 
 import React, {useState, useEffect} from 'react';
 import { SafeAreaView, Text, View, FlatList, Button, TouchableOpacity} from 'react-native';
@@ -79,9 +80,16 @@ const Jobs = (props) => {
                             <Text>{selectedJob.location}</Text>
                             <Text>{selectedJob.company}</Text>
                         </View>
-                        <View style={jobs.jobDesc}>
+                        {/* <View style={jobs.jobDesc}>
                             <Text style={{fontWeight:"bold"}}>Description</Text>
                             <Text numberOfLines={5}>{selectedJob.description}</Text>
+                        </View> */}
+                        <View style={jobs.jobDesc}>
+                            <WebView
+                                source={{html: selectedJob.description}}
+                                // Aşağıdaki style'ı vermezsek gözükmez!!
+                                // height: Dimensions.get("window").height / 2
+                            />
                         </View>
                         <Button title="Save" onPress={onJobSave}/> 
                     </View>
