@@ -52,6 +52,9 @@ export const jobs = StyleSheet.create({
         fontSize: 20,
         fontWeight: "bold",
         color: "black"
+    },
+    jobDesc: {
+        padding: 5,
     }
 })
 
